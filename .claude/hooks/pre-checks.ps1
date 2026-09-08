@@ -5,14 +5,14 @@ cat > /dev/null
 
 STATE_FILE=".sdlc/workflow-state.json"
 
-# Guard: Block if the state file does not exist
+# No workflow started yet: allow normal commands (e.g. git inspection/setup)
+# so the gate only kicks in once a workflow is actually in progress.
 if [ ! -f "$STATE_FILE" ]; then
   cat <<'EOF'
 {
   "hookSpecificOutput": {
     "hookEventName": "PreToolUse",
-    "permissionDecision": "deny",
-    "permissionDecisionReason": "❌ SDLC Gate Blocked: State file \".sdlc/workflow-state.json\" is missing."
+    "permissionDecision": "defer"
   }
 }
 EOF

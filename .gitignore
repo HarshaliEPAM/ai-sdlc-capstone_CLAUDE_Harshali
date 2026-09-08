@@ -1,0 +1,4 @@
+.claude/.env
+.claude/settings.local.json
+.sdlc/workflow-state.json
+node_modules/
