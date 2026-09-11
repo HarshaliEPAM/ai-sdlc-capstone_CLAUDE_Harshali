@@ -1,46 +1,45 @@
-# Capston_Claude
+# ai-sdlc-capstone_CLAUDE_Harshali
 
 
 
 ## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+To make it easy for you to get started with GitHub, here's a list of recommended next steps.
 
 Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
 ## Add your files
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+- [ ] [Create](https://docs.github.com/repositories/working-with-files/managing-files/creating-new-files) or [upload](https://docs.github.com/repositories/working-with-files/managing-files/adding-a-file-to-a-repository) files
+- [ ] Add files using the command line or push an existing Git repository with the following command:
 
 ```
 cd existing_repo
-git remote add origin https://git.epam.com/gayatri_mungarwadi/capston_claude.git
+git remote add origin https://github.com/HarshaliEPAM/ai-sdlc-capstone_CLAUDE_Harshali.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://git.epam.com/gayatri_mungarwadi/capston_claude/-/settings/integrations)
+- [ ] [Set up project integrations](https://github.com/HarshaliEPAM/ai-sdlc-capstone_CLAUDE_Harshali/settings/integrations)
 
 ## Collaborate with your team
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+- [ ] [Invite team members and collaborators](https://docs.github.com/organizations/managing-user-access-to-your-organizations-repositories)
+- [ ] [Create a new pull request](https://docs.github.com/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+- [ ] [Automatically close issues from pull requests](https://docs.github.com/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
+- [ ] [Enable required reviews for pull requests](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
+- [ ] [Set auto-merge](https://docs.github.com/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/automatically-merging-a-pull-request)
 
 ## Test and Deploy
 
-Use the built-in continuous integration in GitLab.
+Use the built-in continuous integration in GitHub Actions.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+- [ ] [Get started with GitHub Actions](https://docs.github.com/actions/writing-workflows/quickstart)
+- [ ] [Analyze your code for known vulnerabilities with GitHub code scanning](https://docs.github.com/code-security/code-scanning)
+- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Actions](https://docs.github.com/actions/use-cases-and-examples/deploying)
+- [ ] [Set up branch protection rules](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
 
 ***
 

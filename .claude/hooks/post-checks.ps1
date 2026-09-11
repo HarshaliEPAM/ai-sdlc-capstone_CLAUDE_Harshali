@@ -23,7 +23,7 @@ fi
 echo "🚀 Preparing to push branch: $CURRENT_BRANCH..."
 
 # 3. Push current branch to remote origin
-if ! git push -u origin "$CURRENT_BRANCH"; then
+if ! git push -u origin "$CURRENT_BRANCH" 2>/dev/null; then
   echo "❌ Git push failed. Ensure you have remote write permissions."
   cat <<'EOF'
 {
@@ -37,9 +37,15 @@ EOF
   exit 0
 fi
 
-# 4. Check if GitHub CLI 'gh' is available locally
-if ! command -v gh >/dev/null 2>&1; then
-  echo "⚠️ GitHub CLI ('gh') is not installed. Skipping automated Pull Request."
+# 4. Read GitHub token from .claude/.env
+GITHUB_TOKEN=""
+ENV_FILE=".claude/.env"
+if [ -f "$ENV_FILE" ]; then
+  GITHUB_TOKEN=$(grep -E "^GITHUB_PAT=" "$ENV_FILE" | sed 's/GITHUB_PAT=//' | tr -d ' \r\n')
+fi
+
+if [ -z "$GITHUB_TOKEN" ]; then
+  echo "⚠️ No GitHub token found in $ENV_FILE (GITHUB_PAT). Skipping PR creation."
   cat <<'EOF'
 {
   "hookSpecificOutput": {
@@ -51,22 +57,48 @@ EOF
   exit 0
 fi
 
-# 5. Check if a PR already exists for this branch
-if gh pr view --json url >/dev/null 2>&1; then
-  PR_URL=$(gh pr view --json url -q .url)
-  echo "✅ Pull Request already exists: $PR_URL"
+# 5. Derive owner/repo from remote URL
+REMOTE_URL=$(git remote get-url origin 2>/dev/null)
+OWNER_REPO=$(echo "$REMOTE_URL" | sed -E 's|.*github\.com[:/]([^/]+/[^/]+)(\.git)?$|\1|; s|\.git$||')
+GITHUB_API="https://api.github.com/repos/${OWNER_REPO}"
+AUTH_HEADER="Authorization: Bearer $GITHUB_TOKEN"
+
+# 6. Check if PR already exists for this branch
+OWNER=$(echo "$OWNER_REPO" | cut -d/ -f1)
+EXISTING_PR=$(curl -s -H "$AUTH_HEADER" -H "Accept: application/vnd.github+json" -H "User-Agent: claude-code-hook" \
+  "${GITHUB_API}/pulls?head=${OWNER}:${CURRENT_BRANCH}&state=open" | \
+  grep -o '"html_url":"[^"]*"' | head -1 | sed 's/"html_url":"//; s/"//')
+
+if [ -n "$EXISTING_PR" ]; then
+  echo "✅ Pull Request already exists: $EXISTING_PR"
 else
-  # 6. Open a draft PR using '--fill' to pull titles and description from commits
-  echo "📦 Creating Draft Pull Request on GitHub..."
-  if PR_OUTPUT=$(gh pr create --draft --fill 2>&1); then
-    echo "🎉 Draft Pull Request successfully opened!"
-    echo "$PR_OUTPUT"
+  # 7. Resolve default target branch
+  TARGET_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|refs/remotes/origin/||')
+  [ -z "$TARGET_BRANCH" ] && TARGET_BRANCH="main"
+
+  # 8. Use last commit subject as PR title
+  PR_TITLE=$(git log -1 --pretty=%s | sed 's/"/\\"/g')
+
+  echo "📦 Creating Pull Request on GitHub..."
+  PR_RESPONSE=$(curl -s -X POST \
+    -H "$AUTH_HEADER" \
+    -H "Accept: application/vnd.github+json" \
+    -H "User-Agent: claude-code-hook" \
+    -H "Content-Type: application/json" \
+    -d "{\"head\":\"${CURRENT_BRANCH}\",\"base\":\"${TARGET_BRANCH}\",\"title\":\"${PR_TITLE}\"}" \
+    "${GITHUB_API}/pulls")
+
+  PR_URL=$(echo "$PR_RESPONSE" | grep -o '"html_url":"[^"]*"' | head -1 | sed 's/"html_url":"//; s/"//')
+
+  if [ -n "$PR_URL" ]; then
+    echo "🎉 Pull Request created: $PR_URL"
   else
-    echo "⚠️ Failed to create GitHub PR. Run 'gh auth status' to verify login permissions."
+    echo "⚠️ Failed to create Pull Request."
+    echo "$PR_RESPONSE"
   fi
 fi
 
-# 7. Complete the turn successfully
+# 9. Complete the turn successfully
 cat <<'EOF'
 {
   "hookSpecificOutput": {
