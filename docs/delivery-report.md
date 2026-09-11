@@ -1,9 +1,7 @@
 # Delivery Report: KAN-1 — Search Books by Title
 
-**Date:** 2026-08-19  
-**Status:** COMPLETED  
-
-> **Migration note:** this delivery originally targeted the EPAM GitLab remote below. The project has since moved to GitHub — see `docs/repo-migration.md` for the current remote, PR, and Jira link.
+**Date:** 2026-09-08
+**Status:** COMPLETED
 
 ---
 
@@ -25,22 +23,23 @@
 
 | Field | Value |
 |---|---|
+| Jira ticket | [KAN-1 — Search Books by Title](https://epam-team-b69s97t6.atlassian.net/browse/KAN-1) |
 | Branch | `feature/search-books-by-title` |
-| Commit | `cfc73e97522350a01f2e54c5a41249f992a5a2a5` |
-| Remote | `https://git.epam.com/gayatri_mungarwadi/capston_claude.git` |
-| Push result | Success (new branch) |
+| Feature commit | `cfc73e97522350a01f2e54c5a41249f992a5a2a5` |
+| Remote | `https://github.com/HarshaliEPAM/ai-sdlc-capstone_CLAUDE_Harshali.git` |
+| Push result | Success |
 
 ---
 
-## Merge Request
+## Pull Request
 
-**MR !1 — OPEN**
+**PR #1 — OPEN**
 
-https://git.epam.com/gayatri_mungarwadi/capston_claude/-/merge_requests/1
+https://github.com/HarshaliEPAM/ai-sdlc-capstone_CLAUDE_Harshali/pull/1
 
-**Source:** `feature/search-books-by-title` → **Target:** `main`  
-**State:** opened  
-**SHA:** `cfc73e97522350a01f2e54c5a41249f992a5a2a5`
+**Source:** `feature/search-books-by-title` → **Target:** `main`
+**State:** open
+**Head SHA:** `83a4f0b705ff6998caa51c4038f1e6767036ffdd`
 
 ---
 

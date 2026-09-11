@@ -6,9 +6,9 @@ cat > /dev/null
 # 1. Get current git branch name
 CURRENT_BRANCH=$(git branch --show-current)
 
-# 2. Safety Guard: Skip MR creation if on a primary branch
+# 2. Safety Guard: Skip PR creation if on a primary branch
 if [ "$CURRENT_BRANCH" = "main" ] || [ "$CURRENT_BRANCH" = "master" ] || [ "$CURRENT_BRANCH" = "develop" ]; then
-  echo "ℹ️ On primary branch ($CURRENT_BRANCH). Skipping automated Merge Request creation."
+  echo "ℹ️ On primary branch ($CURRENT_BRANCH). Skipping automated Pull Request creation."
   cat <<'EOF'
 {
   "hookSpecificOutput": {

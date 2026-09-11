@@ -12,7 +12,7 @@
 
 ## 1. Project Overview
 
-capston_claude is a static single-page bookstore application. The feature delivered under this report — **Search Books by Title (KAN-1)** — adds real-time title search to the bookstore homepage: a debounced search input, client-side filtering against a mock catalog, a book-card grid, and an empty-state message. The entire feature — from requirements through merge request — was produced by an AI-SDLC pipeline with Claude as the primary engineering agent.
+capston_claude is a static single-page bookstore application. The feature delivered under this report — **Search Books by Title (KAN-1)** — adds real-time title search to the bookstore homepage: a debounced search input, client-side filtering against a mock catalog, a book-card grid, and an empty-state message. The entire feature — from requirements through pull request — was produced by an AI-SDLC pipeline with Claude as the primary engineering agent.
 
 ### Application capabilities
 
@@ -402,17 +402,15 @@ The code-review-agent returned **APPROVED**. All findings were MEDIUM or LOW sev
 
 ## 13. Delivery Details
 
-**Note:** KAN-1 was originally delivered against the EPAM GitLab remote below on 2026-08-19. The project has since migrated to GitHub — see `docs/repo-migration.md` for the current remote, PR, and Jira link.
-
 | Field | Value |
 |---|---|
-| Jira ticket | KAN-1 — Search Books by Title |
+| Jira ticket | [KAN-1 — Search Books by Title](https://epam-team-b69s97t6.atlassian.net/browse/KAN-1) |
 | Branch | `feature/search-books-by-title` |
 | Commit | `cfc73e97522350a01f2e54c5a41249f992a5a2a5` |
-| Original remote (GitLab) | `https://git.epam.com/gayatri_mungarwadi/capston_claude.git` |
-| Original Merge Request | [!1 — OPEN](https://git.epam.com/gayatri_mungarwadi/capston_claude/-/merge_requests/1) |
-| MR source → target | `feature/search-books-by-title` → `main` |
-| MR creation method | `post-checks.ps1` GitLab API v4 (auto on Stop hook) — since replaced with GitHub's PR API |
+| Remote | `https://github.com/HarshaliEPAM/ai-sdlc-capstone_CLAUDE_Harshali.git` |
+| Pull Request | [#1 — OPEN](https://github.com/HarshaliEPAM/ai-sdlc-capstone_CLAUDE_Harshali/pull/1) |
+| PR source → target | `feature/search-books-by-title` → `main` |
+| PR creation method | `post-checks.ps1` GitHub Pull Request REST API (auto on Stop hook) |
 | Delivery report | `docs/delivery-report.md` |
 
 ---
@@ -428,5 +426,4 @@ The AI-SDLC pipeline for KAN-1 followed this sequence from start to finish:
 5. **Implementation** — implementation agent created all three source files and the test scaffold; `coding-standards` and `test-engineering` skills enforced consistent patterns; wrote `.sdlc/implementation-summary.md`
 6. **Testing** — tests agent ran `bddgen` + `playwright test`; 12/12 scenarios passed; wrote `.sdlc/test-report.md`
 7. **Code review** — code-review-agent reviewed git diff against all SDLC artifacts; returned APPROVED with 5 LOW/MEDIUM findings; wrote `.sdlc/code-review.md`
-8. **Delivery** — delivery agent verified gate, created `feature/search-books-by-title`, committed, pushed; `post-checks.ps1` fired on Stop and created GitLab MR !1 via API; wrote `docs/delivery-report.md`
-9. **Migration** — repository moved from EPAM GitLab to GitHub (`HarshaliEPAM/ai-sdlc-capstone_CLAUDE_Harshali`) and Jira moved to `epam-team-b69s97t6.atlassian.net`; see `docs/repo-migration.md`
+8. **Delivery** — delivery agent verified gate, created `feature/search-books-by-title`, committed, pushed to GitHub (`HarshaliEPAM/ai-sdlc-capstone_CLAUDE_Harshali`); `post-checks.ps1` fired on Stop and created GitHub PR #1 via API; wrote `docs/delivery-report.md`
